@@ -15,20 +15,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/api/getAdsInfo", (req, res) => {
-  res.json({ message: "Welcome to our application." });
+  var resp = {
+    "adsId": adId,
+    "adName": adName
+  }
+  res.json(resp);
 });
 
-app.post('/api/postAdsInfo', (req, res) => {
-    console.log('adsId: ' + req.body.adsId + ', adName: ' + req.body.adName)
-    
-    adId = req.body.adsId;
-    adName = req.body.adName;
+app.post('/api/postAdsInfo', (req, res) => {  
+  adId = req.body.adsId;
+  adName = req.body.adName;
 
-    var resp = {
-      "adsId": adId,
-      "adName": adName
-    }
-    res.json(resp);
+  var resp = {
+    "adsId": adId,
+    "adName": adName
+  }
+  res.json(resp);
 })
 
 app.listen(PORT, () => {
